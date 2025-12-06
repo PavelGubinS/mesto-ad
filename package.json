@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -21,6 +20,6 @@
   },
   "homepage": "https://github.com/PavelGubinS/mesto-ad#readme",
   "devDependencies": {
-    "vite": "^7.2.6"
+    "vite": "^7.2.6" 
   }
 }
