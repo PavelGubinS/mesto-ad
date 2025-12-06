@@ -1,4 +1,3 @@
-// Функция, которая отображает сообщение об ошибке под полем
 function showInputError(formElement, inputElement, errorMessage, settings) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorElement.textContent = errorMessage;
@@ -6,7 +5,6 @@ function showInputError(formElement, inputElement, errorMessage, settings) {
   inputElement.classList.add(settings.inputErrorClass);
 }
 
-// Функция, которая скрывает сообщение об ошибке
 function hideInputError(formElement, inputElement, settings) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorElement.textContent = "";
@@ -14,11 +12,9 @@ function hideInputError(formElement, inputElement, settings) {
   inputElement.classList.remove(settings.inputErrorClass);
 }
 
-// Проверяет валидность поля
 function checkInputValidity(formElement, inputElement, settings) {
   const { inputErrorClass, errorClass } = settings;
 
-  // Если поле пустое — ошибка
   if (!inputElement.value.trim()) {
     showInputError(
       formElement,
@@ -29,7 +25,6 @@ function checkInputValidity(formElement, inputElement, settings) {
     return;
   }
 
-  // Проверка длины поля (в зависимости от типа)
   const minLength =
     inputElement.classList.contains("popup__input_type_name") ||
     inputElement.classList.contains("popup__input_type_card-name")
@@ -65,7 +60,6 @@ function checkInputValidity(formElement, inputElement, settings) {
     return;
   }
 
-  // Проверка на разрешённые символы (латиница, кириллица, дефис, пробел)
   if (
     inputElement.classList.contains("popup__input_type_name") ||
     inputElement.classList.contains("popup__input_type_card-name")
@@ -80,7 +74,6 @@ function checkInputValidity(formElement, inputElement, settings) {
     }
   }
 
-  // Проверка URL
   if (inputElement.classList.contains("popup__input_type_url")) {
     const urlRegex =
       /^(https?:\/\/)?([a-z0-9][a-z0-9\-]*\.[a-z0-9][a-z0-9\-]*)([a-z0-9][a-z0-9\-]*\.[a-z0-9][a-z0-9\-]*)*(:\d{1,5})?(\/[a-z0-9\/]*)*(\?[a-z0-9&=]*)?(#[a-z0-9]*)?$/i;
@@ -95,31 +88,26 @@ function checkInputValidity(formElement, inputElement, settings) {
     }
   }
 
-  // Если всё в порядке — убираем ошибку
   hideInputError(formElement, inputElement, settings);
 }
 
-// Проверяет, есть ли хотя бы одно невалидное поле
 function hasInvalidInput(formElement, settings) {
   const inputElements = formElement.querySelectorAll(settings.inputSelector);
   return Array.from(inputElements).some((input) => !input.validity.valid);
 }
 
-// Делает кнопку неактивной
 function disableSubmitButton(formElement, settings) {
   const submitButton = formElement.querySelector(settings.submitButtonSelector);
   submitButton.disabled = true;
   submitButton.classList.add(settings.inactiveButtonClass);
 }
 
-// Делает кнопку активной
 function enableSubmitButton(formElement, settings) {
   const submitButton = formElement.querySelector(settings.submitButtonSelector);
   submitButton.disabled = false;
   submitButton.classList.remove(settings.inactiveButtonClass);
 }
 
-// Переключает состояние кнопки в зависимости от валидности
 function toggleButtonState(formElement, settings) {
   const isInvalid = hasInvalidInput(formElement, settings);
   if (isInvalid) {
@@ -129,7 +117,6 @@ function toggleButtonState(formElement, settings) {
   }
 }
 
-// Добавляет обработчики событий input для всех полей формы
 function setEventListeners(formElement, settings) {
   const inputElements = formElement.querySelectorAll(settings.inputSelector);
 
@@ -141,7 +128,6 @@ function setEventListeners(formElement, settings) {
   });
 }
 
-// Очищает ошибки валидации и делает кнопку неактивной
 function clearValidation(formElement, settings) {
   const inputElements = formElement.querySelectorAll(settings.inputSelector);
   inputElements.forEach((input) => {
@@ -150,21 +136,16 @@ function clearValidation(formElement, settings) {
   disableSubmitButton(formElement, settings);
 }
 
-// Функция, которая включает валидацию для всех форм
-// Принимает объект с настройками
 function enableValidation(settings) {
   const formElements = document.querySelectorAll(settings.formSelector);
   formElements.forEach((formElement) => {
-    // Сначала очистим старые обработчики, если они есть
     formElement.querySelectorAll(settings.inputSelector).forEach((input) => {
-      input.removeEventListener("input", () => {});
+      input.removeEventListener("input", () => {}); // Удаляем старые обработчики
     });
 
-    // Добавляем обработчики
     setEventListeners(formElement, settings);
     toggleButtonState(formElement, settings);
   });
 }
 
-// Экспорт только нужных функций
 export { enableValidation, clearValidation };
