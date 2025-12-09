@@ -75,7 +75,7 @@ function checkInputValidity(formElement, inputElement, settings) {
   }
 
   if (inputElement.classList.contains("popup__input_type_url")) {
-    const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/i;
+    const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\.(jpg|jpeg|png|gif|svg|webp)(\?.*)?$/i;
     if (!urlRegex.test(inputElement.value)) {
       showInputError(
         formElement,
