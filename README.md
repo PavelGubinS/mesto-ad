@@ -1,3 +1,7 @@
+Сайт:
+https://pavelgubins.github.io/mesto-ad/
+
+Проект:
 https://github.com/PavelGubinS/mesto-ad
 
 Стартовый набор для выполнения проектной работы Место
