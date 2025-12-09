@@ -48,7 +48,7 @@ function checkInputValidity(formElement, inputElement, settings) {
       inputElement.classList.contains("popup__input_type_name") ||
       inputElement.classList.contains("popup__input_type_card-name")
     ) {
-      message = "Длина должна быть от 2 до 40 символов (или 2–30 для названия)"; // Это будет заменено
+      message = "Длина должна быть от 2 до 40 символов (или 2–30 для названия)"; 
     } else if (
       inputElement.classList.contains("popup__input_type_description")
     ) {
@@ -140,7 +140,7 @@ function enableValidation(settings) {
   const formElements = document.querySelectorAll(settings.formSelector);
   formElements.forEach((formElement) => {
     formElement.querySelectorAll(settings.inputSelector).forEach((input) => {
-      input.removeEventListener("input", () => {}); // Удаляем старые обработчики
+      input.removeEventListener("input", () => {});
     });
 
     setEventListeners(formElement, settings);
