@@ -1,7 +1,7 @@
 {
   "name": "mesto-ad",
   "version": "1.0.0",
-  "description": "Стартовый набор для выполнения проектной работы Место",
+  "description": "Стартовый набор для Mesto",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -11,15 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/PavelGubinS/mesto-ad.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "PavelGubinS",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/PavelGubinS/mesto-ad/issues"
-  },
   "homepage": "https://github.com/PavelGubinS/mesto-ad#readme",
   "devDependencies": {
-    "vite": "^7.2.6" 
+    "vite": "^7.2.7"
   }
 }
