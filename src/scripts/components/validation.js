@@ -75,8 +75,7 @@ function checkInputValidity(formElement, inputElement, settings) {
   }
 
   if (inputElement.classList.contains("popup__input_type_url")) {
-    const urlRegex =
-      /^(https?:\/\/)?([a-z0-9][a-z0-9\-]*\.[a-z0-9][a-z0-9\-]*)([a-z0-9][a-z0-9\-]*\.[a-z0-9][a-z0-9\-]*)*(:\d{1,5})?(\/[a-z0-9\/]*)*(\?[a-z0-9&=]*)?(#[a-z0-9]*)?$/i;
+    const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/i;
     if (!urlRegex.test(inputElement.value)) {
       showInputError(
         formElement,
