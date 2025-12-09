@@ -2,6 +2,7 @@
 https://pavelgubins.github.io/mesto-ad/
 На сайте проблемы с отображением, хотя локально всё запускается, пытаюсь починить
 (попробовал отключить Jekyll - не сработало)
+(Сделал .gitignore со строкой "/node_modules" - СРАБОТАЛО, САЙТ ПОЧИНИЛСЯ)
 
 Проект:
 https://github.com/PavelGubinS/mesto-ad
