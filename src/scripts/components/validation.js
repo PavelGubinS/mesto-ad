@@ -27,7 +27,7 @@ function checkInputValidity(formElement, inputElement, settings) {
     inputElement.classList.contains("popup__input_type_name") ||
     inputElement.classList.contains("popup__input_type_card-name")
       ? 2
-      : 2;
+      : 2; // граничу худшим значением, по условию непонятно, чего тут лучше поставить
 
   const maxLength = inputElement.classList.contains("popup__input_type_name")
     ? 40
@@ -35,7 +35,7 @@ function checkInputValidity(formElement, inputElement, settings) {
     ? 30
     : inputElement.classList.contains("popup__input_type_description")
     ? 200
-    : 200;
+    : 200;  // граничу худшим значением, по условию непонятно, чего тут лучше поставить
 
   if (
     inputElement.value.length < minLength ||
@@ -91,7 +91,7 @@ function checkInputValidity(formElement, inputElement, settings) {
 
 function hasInvalidInput(formElement, settings) {
   const inputElements = formElement.querySelectorAll(settings.inputSelector);
-  return Array.from(inputElements).some((input) => !input.validity.valid);
+  return Array.from(inputElements).some((input) => !input.validity.valid); // хотя бы 1 валидный элемент
 }
 
 function disableSubmitButton(formElement, settings) {
