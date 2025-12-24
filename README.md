@@ -1,7 +1,7 @@
 Сайт:
 https://pavelgubins.github.io/mesto-ad/  
 
-Вторая часть сделана, ссылку на сайт поменяю.
+Вторая часть сделана, ссылку на сайт поменяю
 
 Проект:
 https://github.com/PavelGubinS/mesto-ad
