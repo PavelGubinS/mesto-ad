@@ -85,13 +85,11 @@ const handleProfileFormSubmit = (evt) => {
       console.log(err);
     })
     .finally(() => {
-      // Восстанавливаем кнопку
       submitButton.textContent = originalText;
       submitButton.disabled = false;
     });
 };
 
-// Обновление аватара
 const handleAvatarFromSubmit = (evt) => {
   evt.preventDefault();
 
@@ -118,7 +116,6 @@ const handleAvatarFromSubmit = (evt) => {
     });
 };
 
-// Добавление новой карточки
 const handleCardFormSubmit = (evt) => {
   evt.preventDefault();
 
