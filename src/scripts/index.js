@@ -93,7 +93,6 @@ const handleProfileFormSubmit = (evt) => {
 const handleAvatarFromSubmit = (evt) => {
   evt.preventDefault();
 
-  // Сохраняем текст кнопки и меняем на "Сохранение..."
   const submitButton = avatarForm.querySelector(".popup__button");
   const originalText = submitButton.textContent;
   submitButton.textContent = "Сохранение...";
@@ -110,7 +109,6 @@ const handleAvatarFromSubmit = (evt) => {
       console.log(err);
     })
     .finally(() => {
-      // Восстанавливаем кнопку
       submitButton.textContent = originalText;
       submitButton.disabled = false;
     });
@@ -186,15 +184,11 @@ const handleLike = (likeButton, cardId) => {
   likeCard(likeButton);
 };
 
-// Обработчик удаления карточки
 const handleDelete = (cardElement, cardId) => {
-  // Показываем модальное окно подтверждения удаления
   const confirmDeleteModal = document.querySelector(".popup_type_remove-card");
   if (confirmDeleteModal) {
-    // Открываем модальное окно подтверждения
     openModalWindow(confirmDeleteModal);
 
-    // Обработчик подтверждения удаления
     const confirmButton = confirmDeleteModal.querySelector(".popup__button");
     confirmButton.addEventListener("click", () => {
       apiDeleteCard(cardId)
