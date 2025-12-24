@@ -16,14 +16,16 @@ export const closeModalWindow = (modalWindow) => {
 };
 
 export const setCloseModalWindowEventListeners = (modalWindow) => {
-  const closeButtonElement = modalWindow.querySelector(".popup__close")
-  closeButtonElement.addEventListener("click", () => {
-    closeModalWindow(modalWindow);
-  });
+  const closeButtonElement = modalWindow.querySelector(".popup__close");
+  if (closeButtonElement) {
+    closeButtonElement.addEventListener("click", () => {
+      closeModalWindow(modalWindow);
+    });
+  }
 
   modalWindow.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("popup")) {
       closeModalWindow(modalWindow);
     }
   });
-}
+};

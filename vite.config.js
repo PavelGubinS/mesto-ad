@@ -10,5 +10,5 @@ export default defineConfig({
     emptyOutDir: true, // чистка dist перед каждой сборкой
   },
 
-  base: "/mesto-ad/",
+  base: "./",
 });

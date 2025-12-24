@@ -20,22 +20,24 @@ function checkInputValidity(formElement, inputElement, settings) {
       "Поле обязательно для заполнения",
       settings
     );
-    return;
+    return false;
   }
 
+  // Проверка минимальной длины
   const minLength =
     inputElement.classList.contains("popup__input_type_name") ||
     inputElement.classList.contains("popup__input_type_card-name")
       ? 2
-      : 2; // граничу худшим значением, по условию непонятно, чего тут лучше поставить
+      : 2;
 
-  const maxLength = inputElement.classList.contains("popup__input_type_name")
-    ? 40
-    : inputElement.classList.contains("popup__input_type_card-name")
-    ? 30
-    : inputElement.classList.contains("popup__input_type_description")
-    ? 200
-    : 200;  // граничу худшим значением, по условию непонятно, чего тут лучше поставить
+  // Проверка максимальной длины
+  const maxLength =
+    inputElement.classList.contains("popup__input_type_name") ||
+    inputElement.classList.contains("popup__input_type_card-name")
+      ? 30
+      : inputElement.classList.contains("popup__input_type_description")
+      ? 200
+      : 200;
 
   if (
     inputElement.value.length < minLength ||
@@ -46,7 +48,7 @@ function checkInputValidity(formElement, inputElement, settings) {
       inputElement.classList.contains("popup__input_type_name") ||
       inputElement.classList.contains("popup__input_type_card-name")
     ) {
-      message = "Длина должна быть от 2 до 40 символов (или 2–30 для названия)";
+      message = "Длина должна быть от 2 до 30 символов";
     } else if (
       inputElement.classList.contains("popup__input_type_description")
     ) {
@@ -55,9 +57,10 @@ function checkInputValidity(formElement, inputElement, settings) {
       message = "Введите корректную ссылку";
     }
     showInputError(formElement, inputElement, message, settings);
-    return;
+    return false;
   }
 
+  // Проверка регулярного выражения для имени и названия
   if (
     inputElement.classList.contains("popup__input_type_name") ||
     inputElement.classList.contains("popup__input_type_card-name")
@@ -68,10 +71,11 @@ function checkInputValidity(formElement, inputElement, settings) {
         inputElement.dataset.errorMessage ||
         "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы";
       showInputError(formElement, inputElement, customMessage, settings);
-      return;
+      return false;
     }
   }
 
+  // Проверка URL
   if (inputElement.classList.contains("popup__input_type_url")) {
     const urlRegex =
       /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\.(jpg|jpeg|png|gif|svg|webp)(\?.*)?$/i;
@@ -82,16 +86,19 @@ function checkInputValidity(formElement, inputElement, settings) {
         "Введите корректную ссылку",
         settings
       );
-      return;
+      return false;
     }
   }
 
   hideInputError(formElement, inputElement, settings);
+  return true;
 }
 
 function hasInvalidInput(formElement, settings) {
   const inputElements = formElement.querySelectorAll(settings.inputSelector);
-  return Array.from(inputElements).some((input) => !input.validity.valid); // хотя бы 1 валидный элемент
+  return Array.from(inputElements).some(
+    (input) => !checkInputValidity(formElement, input, settings)
+  );
 }
 
 function disableSubmitButton(formElement, settings) {
@@ -137,10 +144,6 @@ function clearValidation(formElement, settings) {
 function enableValidation(settings) {
   const formElements = document.querySelectorAll(settings.formSelector);
   formElements.forEach((formElement) => {
-    formElement.querySelectorAll(settings.inputSelector).forEach((input) => {
-      input.removeEventListener("input", () => {});
-    });
-
     setEventListeners(formElement, settings);
     toggleButtonState(formElement, settings);
   });
