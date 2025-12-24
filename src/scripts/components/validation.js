@@ -23,14 +23,12 @@ function checkInputValidity(formElement, inputElement, settings) {
     return false;
   }
 
-  // Проверка минимальной длины
   const minLength =
     inputElement.classList.contains("popup__input_type_name") ||
     inputElement.classList.contains("popup__input_type_card-name")
       ? 2
       : 2;
 
-  // Проверка максимальной длины
   const maxLength =
     inputElement.classList.contains("popup__input_type_name") ||
     inputElement.classList.contains("popup__input_type_card-name")
@@ -60,7 +58,6 @@ function checkInputValidity(formElement, inputElement, settings) {
     return false;
   }
 
-  // Проверка регулярного выражения для имени и названия
   if (
     inputElement.classList.contains("popup__input_type_name") ||
     inputElement.classList.contains("popup__input_type_card-name")
@@ -77,16 +74,22 @@ function checkInputValidity(formElement, inputElement, settings) {
 
   // Проверка URL
   if (inputElement.classList.contains("popup__input_type_url")) {
+    // Упрощенная проверка URL для изображений
     const urlRegex =
       /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\.(jpg|jpeg|png|gif|svg|webp)(\?.*)?$/i;
     if (!urlRegex.test(inputElement.value)) {
-      showInputError(
-        formElement,
-        inputElement,
-        "Введите корректную ссылку",
-        settings
-      );
-      return false;
+      // Попробуем более простую проверку
+      const simpleUrlRegex =
+        /^(https?:\/\/)?[\w.-]+\.[a-zA-Z]{2,}\/?[\w\-._~:/?#[$@!$&'()*+,;=]*$/i;
+      if (!simpleUrlRegex.test(inputElement.value)) {
+        showInputError(
+          formElement,
+          inputElement,
+          "Введите корректную ссылку",
+          settings
+        );
+        return false;
+      }
     }
   }
 
