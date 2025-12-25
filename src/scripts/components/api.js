@@ -35,7 +35,7 @@ export const setUserInfo = ({ name, about }) => {
 
 export const setUserAvatar = ({ avatar }) => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
-    method: "PATCH", 
+    method: "PATCH",
     headers: config.headers,
     body: JSON.stringify({
       avatar,
