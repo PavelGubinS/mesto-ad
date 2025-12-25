@@ -24,7 +24,7 @@ export const getCardList = () => {
 
 export const setUserInfo = ({ name, about }) => {
   return fetch(`${config.baseUrl}/users/me`, {
-    method: "PATCH",
+    method: "PATCH", // частичное обновление данных пользователя
     headers: config.headers,
     body: JSON.stringify({
       name,
@@ -35,7 +35,7 @@ export const setUserInfo = ({ name, about }) => {
 
 export const setUserAvatar = ({ avatar }) => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
-    method: "PATCH",
+    method: "PATCH", 
     headers: config.headers,
     body: JSON.stringify({
       avatar,
@@ -63,7 +63,7 @@ export const deleteCard = (cardId) => {
 
 export const likeCard = (cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-    method: "PUT",
+    method: "PUT", // Меняемм целиком, не перепутать с POST
     headers: config.headers,
   }).then(getResponseData);
 };
