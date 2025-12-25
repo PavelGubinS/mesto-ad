@@ -72,13 +72,10 @@ function checkInputValidity(formElement, inputElement, settings) {
     }
   }
 
-  // Проверка URL
   if (inputElement.classList.contains("popup__input_type_url")) {
-    // Упрощенная проверка URL для изображений
     const urlRegex =
       /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\.(jpg|jpeg|png|gif|svg|webp)(\?.*)?$/i;
     if (!urlRegex.test(inputElement.value)) {
-      // Попробуем более простую проверку
       const simpleUrlRegex =
         /^(https?:\/\/)?[\w.-]+\.[a-zA-Z]{2,}\/?[\w\-._~:/?#[$@!$&'()*+,;=]*$/i;
       if (!simpleUrlRegex.test(inputElement.value)) {
